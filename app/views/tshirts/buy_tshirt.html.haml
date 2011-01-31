@@ -12,3 +12,23 @@
 
   %br
   %button(type="submit") Submit Payment
+
+%br
+%br
+%br
+
+%h3 Or Pay with PayPal!
+
+= form_tag SpreedlyCore.add_payment_method_url do |f|
+  = hidden_field_tag :redirect_url, transparent_redirect_complete_url
+  = hidden_field_tag :api_login, SpreedlyCore.api_login
+  = hidden_field_tag :payment_method_type, :paypal
+
+  %br
+  .set
+    = label_tag "data[how_many]", "How many shirts? (4 cents each):", :class => :textbox
+    %br
+    = text_field_tag "data[how_many]", @credit_card.how_many, :class => :textbox, :id => "credit_card_how_many"
+
+  %br
+  %button(type="submit") Submit Payment
